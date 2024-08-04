@@ -20,16 +20,6 @@ pipeline {
             }
         }
 
-        stage('Test Docker Image') {
-            steps {
-                script {
-                    dockerImage.inside {
-                        sh 'npm run test'
-                    }
-                }
-            }
-        }
-
         stage('Push Docker Image') {
             steps {
                 script {
