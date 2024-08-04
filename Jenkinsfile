@@ -23,7 +23,10 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}:latest").push('latest')
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhubtoken') {
+                        docker.image("${DOCKER_IMAGE}:latest").push('latest')
+                    }
+
                 }
             }
         }
